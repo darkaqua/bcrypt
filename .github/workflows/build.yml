@@ -1,0 +1,24 @@
+name: Build
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  prettier:
+    name: "prettier"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        deno-version: [2.0.0]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Deno Version ${{ matrix.deno-version }}
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno-version }}
+
+      - name: Publish package check
+        run: npx jsr publish --allow-dirty --dry-run

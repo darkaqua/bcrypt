@@ -1,0 +1,5 @@
+{
+  "name": "@da/bcrypt",
+  "version": "0.0.0",
+  "exports": "./mod.ts"
+}

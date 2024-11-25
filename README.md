@@ -1,12 +1,5 @@
 # BCrypt
 
-[![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/bcrypt/mod.ts)
-[![release](https://img.shields.io/github/v/release/jamesbroadberry/deno-bcrypt.svg?color=green&label=latest)](https://github.com/JamesBroadberry/deno-bcrypt/releases)
-[![ci](https://github.com/JamesBroadberry/deno-bcrypt/workflows/ci/badge.svg)](https://github.com/JamesBroadberry/deno-bcrypt/actions)
-
-This is a port from [jBCrypt](https://github.com/jeremyh/jBCrypt) to TypeScript
-for use in [Deno](https://deno.land/).
-
 It has zero third-party dependencies.
 
 Running in sync requires no permissions. Running in async functionality requires
@@ -18,7 +11,7 @@ If you don't want to specify a specific version and are happy to work with
 breaking changes, you can import this module like so:
 
 ```ts
-import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
+import * as bcrypt from "jsr:@da/bcrypt";
 ```
 
 To ensure that you've got a specific version, it's recommend to import this
@@ -27,7 +20,7 @@ module specifying a
 so:
 
 ```ts
-import * as bcrypt from "https://deno.land/x/bcrypt@v0.3.0/mod.ts";
+import * as bcrypt from "jsr:@da/bcrypt";
 ```
 
 ## Usage
@@ -89,8 +82,3 @@ older version of this library require the `--unstable` flag when running.
 ## Warnings
 
 BCrypt v0.3.0 and below should NOT be used with Deno 1.23.0 or later since there's been a [breaking change in how Deno interprets the code](https://github.com/denoland/deno/issues/14900) and completely bypasses the cipher. Ensure that if you're running Deno 1.23.0 or later that you're using the latest version of BCrypt.
-
-## Issues
-
-For any bug reports or feature requests, please create an issue on
-[GitHub](https://github.com/JamesBroadberry/deno-bcrypt/issues).
