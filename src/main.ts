@@ -13,6 +13,13 @@ export async function hash(
   plaintext: string,
   salt: string | undefined = undefined,
 ): Promise<string> {
+  // Convert the plaintext to a Buffer to measure its byte length
+  const byteLength = new TextEncoder().encode(plaintext).length;
+  
+  // Check if it exceeds the 72-byte limit
+  if (byteLength > 72)
+    throw new Error("Password exceeds bcrypt's 72-byte limit");
+  
   let worker = new Worker(
     new URL("worker.ts", import.meta.url).toString(),
     { type: "module" },
@@ -146,5 +153,13 @@ export function hashSync(
   plaintext: string,
   salt: string | undefined = undefined,
 ): string {
+  // Convert the plaintext to a Buffer to measure its byte length
+  const byteLength = new TextEncoder().encode(plaintext).length;
+  
+  // Check if it exceeds the 72-byte limit
+  if (byteLength > 72)
+    throw new Error("Password exceeds bcrypt's 72-byte limit");
+  
+  
   return bcrypt.hashpw(plaintext, salt);
 }
